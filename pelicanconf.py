@@ -19,6 +19,7 @@ STATIC_PATHS = ['images', 'files']
 FILES_TO_COPY = (
     ('misc/CNAME', 'CNAME'),
 )
+HEME = "themes/basic"
 # Blogroll
 LINKS =  (('Pelican', 'http://getpelican.com/'),
           ('Python.org', 'http://python.org/'),
