@@ -6,7 +6,7 @@ AUTHOR = u'kelwin'
 SITENAME = u'Kelwin'
 SITEURL = ''
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = u'en'
 
@@ -14,6 +14,8 @@ DEFAULT_LANG = u'en'
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
+
+STATIC_PATHS = ['images', 'files']
 
 # Blogroll
 LINKS =  (('Pelican', 'http://getpelican.com/'),
