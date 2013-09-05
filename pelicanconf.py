@@ -16,7 +16,9 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 STATIC_PATHS = ['images', 'files']
-
+FILES_TO_COPY = (
+    ('misc/CNAME', 'CNAME'),
+)
 # Blogroll
 LINKS =  (('Pelican', 'http://getpelican.com/'),
           ('Python.org', 'http://python.org/'),
