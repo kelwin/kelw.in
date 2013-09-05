@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Kelwin - kelwin</title>
+        <title>Debugging WebKit on Android</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="http://kelw.in/theme/css/main.css" type="text/css" />
         <link href="http://kelw.in/" type="application/atom+xml" rel="alternate" title="Kelwin ATOM Feed" />
@@ -27,10 +27,12 @@
                                 </ul></nav>
         </header><!-- /#banner -->
 
-                 <section id="content" class="body">
-        <aside id="featured"><article>
-                <h1 class="entry-title"><a href="http://kelw.in/2013-09-05/debugging-webkit-on-android.html">Debugging WebKit on Android</a></h1>
-                <footer class="post-info">
+        <section id="content" class="body">
+<article>
+        <header> <h1 class="entry-title"><a href="2013-09-05/debugging-webkit-on-android.html"
+        rel="bookmark" title="Permalink to Debugging WebKit on Android">Debugging WebKit on Android</a></h1>  </header>
+        <div class="entry-content">
+        <footer class="post-info">
         <abbr class="published" title="2013-09-05T22:30:00">
                 Thu 05 September 2013
         </abbr>
@@ -40,7 +42,7 @@
         </address>
         <p>In <a href="http://kelw.in/category/2013.html">2013</a>. </p>
 <p>tags: <a href="http://kelw.in/tag/android.html">Android</a><a href="http://kelw.in/tag/debugging.html">debugging</a><a href="http://kelw.in/tag/webkit.html">WebKit</a></p></p></footer><!-- /.post-info --><!-- /.post-info -->
-                <p>Debugging is the best way to understand crash of WebKit, which will help a lot to write exploits. Since WebKit is open-source, we could achieve source-level debugging. Now let me introduce the steps. </p>
+        <p>Debugging is the best way to understand crash of WebKit, which will help a lot to write exploits. Since WebKit is open-source, we could achieve source-level debugging. Now let me introduce the steps. </p>
 <h2>Building Android from Source</h2>
 <p>No matter whether you use emulator or real device(Nexus series), we should get corresponding symbols and sources. Building the whole system yourself will help to generate all the stuff needed - symbols and sources for all the binaries and shared libraries. You can follow the <a href="http://source.android.com/source/building.html">official guide</a> and get the emulator images or flash your device. Symbols will be generated in the directory <code>out/target/product/generic/symbols</code>.</p>
 <p>I've compiled an emulator of Android 4.0.4 and get all the symbols needed in this <a href="http://pan.baidu.com/share/link?shareid=1555478836&amp;uk=3660622653">archive</a>.</p>
@@ -80,15 +82,16 @@
 <li><a href="http://mhandroid.wordpress.com/2011/01/25/how-cc-debugging-works-on-android/">How C/C++ Debugging Works on Android</a></li>
 <li><a href="http://cansecwest.com/slides/2013/An%20Android%20Hacker's%20Journey-%20Challenges%20in%20Android%20Security%20Research.pptx">An Android Hacker's Journey</a></li>
 </ol>
-        </article></aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
-</section><!-- /#content -->
+        </div><!-- /.entry-content -->
+        
+</article>
+</section>
 
         <aside id="sidebar">
                 <div class="widget">
                         <h2>Categories</h2>
                         <ul>
-                                                   <li ><a href="http://kelw.in/category/2013.html">2013</a></li>
+                                                   <li class="active"><a href="http://kelw.in/category/2013.html">2013</a></li>
                                                 </ul>
                 </div>
                         <div class="widget blogroll">
