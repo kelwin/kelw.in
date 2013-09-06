@@ -1,123 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Kelwin - Android</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="http://kelw.in/theme/css/main.css" type="text/css" />
-        <link href="http://kelw.in/" type="application/atom+xml" rel="alternate" title="Kelwin ATOM Feed" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+                    <link rel="stylesheet" href="http://kelw.in/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://kelw.in/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://kelw.in/theme/css/main.css">
         
-
-        <!--[if IE]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="http://kelw.in/css/ie.css"/>
-                <script src="http://kelw.in/js/IE8.js" type="text/javascript"></script><![endif]-->
-
+    <link rel="stylesheet" href="http://kelw.in/theme/css/blog.css">
+    <link rel="stylesheet" href="http://kelw.in/theme/css/github.css">
+                <link href="http://kelw.in/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Kelwin Atom Feed" />
+                        <script src="http://kelw.in/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
         <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="http://kelw.in/css/ie6.css"/><![endif]-->
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
 
-</head>
+        <div id="wrapper">
+                <header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="http://kelw.in"><h1><i class="icon-coffee"></i> Kelwin</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                                            </ul>
+    </nav>
+    <footer id="site-info">
+    <p>
+        Powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org/">Python</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+                        <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2013-09-05T22:30:00" pubdate>
+                            Thu 05 September 2013
+                        </time>
+                        <a href="http://kelw.in/2013-09-05/debugging-webkit-on-android.html" rel="bookmark"><h1>Debugging WebKit on Android</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <p>Step-by-step guide for source-level debugging of Android WebKit.</p>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+                    </ol>
+        
+    </div>
+        </div>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://kelw.in/index.html">Kelwin </a></h1>
-                <nav><ul>
-                                                                                <li><a href="http://kelw.in/">Archives</a></li>
-                                </ul></nav>
-        </header><!-- /#banner -->
-
-                 <section id="content" class="body">
-        <aside id="featured"><article>
-                <h1 class="entry-title"><a href="http://kelw.in/2013-09-05/debugging-webkit-on-android.html">Debugging WebKit on Android</a></h1>
-                <footer class="post-info">
-        <abbr class="published" title="2013-09-05T22:30:00">
-                Thu 05 September 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="http://kelw.in/author/kelwin.html">kelwin</a>
-        </address>
-        <p>In <a href="http://kelw.in/category/2013.html">2013</a>. </p>
-<p>tags: <a href="http://kelw.in/tag/android.html">Android</a><a href="http://kelw.in/tag/debugging.html">debugging</a><a href="http://kelw.in/tag/webkit.html">WebKit</a></p></p></footer><!-- /.post-info --><!-- /.post-info -->
-                <p>Debugging is the best way to understand crash of WebKit, which will help a lot to write exploits. Since WebKit is open-source, we could achieve source-level debugging. Now let me introduce the steps. </p>
-<h2>Building Android from Source</h2>
-<p>No matter whether you use emulator or real device(Nexus series), we should get corresponding symbols and sources. Building the whole system yourself will help to generate all the stuff needed - symbols and sources for all the binaries and shared libraries. You can follow the <a href="http://source.android.com/source/building.html">official guide</a> and get the emulator images or flash your device. Symbols will be generated in the directory <code>out/target/product/generic/symbols</code>.</p>
-<p>I've compiled an emulator of Android 4.0.4 and get all the symbols needed in this <a href="http://pan.baidu.com/share/link?shareid=1555478836&amp;uk=3660622653">archive</a>.</p>
-<h2>Preparing Symbols and Source Code</h2>
-<p>In most cases, we need symbols of  <code>app_process</code>, <code>libc.so</code>, <code>libdvm.so</code>, <code>libstdc++.so</code>, <code>libwebcore.so</code> and <code>linker</code>. <code>app_process</code> is the process that every Android application forks from. For source code, we only need <code>external/webkit</code>.</p>
-<p>Copy the symbols to the directory <code>symbols</code> and the source code of WebKit to the directory <code>source</code>. Thus we get the symbols and source code done. I've already get this done in the archive above.</p>
-<h2>Debugging WebKit</h2>
-<p>Start your emulator or device. If you use my archive, you can create an avd of Android 4.0.4 and run <code>./startemu.sh &lt;avd name&gt;</code> to start the emulator.</p>
-<p>Open Android Browser(or any app using WebView) and start gdbserver:</p>
-<div class="highlight"><pre><span class="gp">$</span> adb shell
-<span class="go">* daemon not running. starting it now on port 5037 *</span>
-<span class="go">* daemon started successfully *</span>
-<span class="gp">#</span> ps | busybox grep browser
-<span class="go">app_22    709   37    149728 46064 ffffffff 400113c0 S com.android.browser</span>
-<span class="gp">#</span> gdbserver :1337 --attach 709
-<span class="go">Attached; pid = 709</span>
-<span class="go">Listening on port 1337</span>
-</pre></div>
-
-
-<p>Open port forwarding:</p>
-<div class="highlight"><pre><span class="gp">$</span> adb forward tcp:1337 tcp:1337
-</pre></div>
-
-
-<p>Start gdb, set symbol and source paths, and start remote debuging:</p>
-<div class="highlight"><pre><span class="gp">$</span> arm-linux-androideabi-gdb app_process
-<span class="go">(gdb) set solib-search-path symbols</span>
-<span class="go">(gdb) directory sources</span>
-<span class="go">(gdb) target remote :1337</span>
-</pre></div>
-
-
-<p>Now everything works like a charm!</p>
-<h2>References</h2>
-<ol>
-<li><a href="http://mhandroid.wordpress.com/2011/01/25/how-cc-debugging-works-on-android/">How C/C++ Debugging Works on Android</a></li>
-<li><a href="http://cansecwest.com/slides/2013/An%20Android%20Hacker's%20Journey-%20Challenges%20in%20Android%20Security%20Research.pptx">An Android Hacker's Journey</a></li>
-</ol>
-        </article></aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
-</section><!-- /#content -->
-
-        <aside id="sidebar">
-                <div class="widget">
-                        <h2>Categories</h2>
-                        <ul>
-                                                   <li ><a href="http://kelw.in/category/2013.html">2013</a></li>
-                                                </ul>
-                </div>
-                        <div class="widget blogroll">
-                        <h2>Blogroll</h2>
-                        <ul>
-                                                    <li><a href="http://getpelican.com/">Pelican</a></li>
-                                                    <li><a href="http://python.org/">Python.org</a></li>
-                                                    <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                                                    <li><a href="#">You can modify those links in your config file</a></li>
-                                                </ul>
-                </div><!-- /.blogroll -->
-                                <div class="widget social">
-                        <h2>Social</h2>
-                        <ul>
-                            <li><a href="http://kelw.in/" rel="alternate">atom feed</a></li>
-                            
-                                                    <li><a href="#">You can add links in your config file</a></li>
-                                                    <li><a href="#">Another social link</a></li>
-                                                </ul>
-                </div><!-- /.social -->
-                </aside><!-- /#sidebar -->
-
-        <footer id="footer" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>, which takes great advantages of <a href="http://python.org">python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is «notmyidea-cms», a modified version of «notmyidea», the default theme.</p>
-        </footer><!-- /#footer -->
-
-</body>
+                <script src="http://kelw.in/theme/js/main.js"></script>
+    </body>
 </html>
