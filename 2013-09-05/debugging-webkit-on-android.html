@@ -65,29 +65,29 @@
 <p>In most cases, we need symbols of  <code>app_process</code>, <code>libc.so</code>, <code>libdvm.so</code>, <code>libstdc++.so</code>, <code>libwebcore.so</code> and <code>linker</code>. <code>app_process</code> is the process that every Android application forks from. For source code, we only need <code>external/webkit</code>.</p>
 <p>Copy the symbols to the directory <code>symbols</code> and the source code of WebKit to the directory <code>source</code>. Thus we get the symbols and source code done. I've already get this done in the archive above.</p>
 <h2>Debugging WebKit</h2>
-<p>Start your emulator or device. If you use my archive, you can create an avd of Android 4.0.4 and run <code>$ ./startemu.sh &lt;avd name&gt;</code> to start the emulator.</p>
+<p>Start your emulator or device. If you use my archive, you can create an avd of Android 4.0.4 and run <code>./startemu.sh &lt;avd name&gt;</code> to start the emulator.</p>
 <p>Open Android Browser(or any app using WebView) and start gdbserver:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">adb</span> <span class="n">shell</span>
-<span class="o">*</span> <span class="n">daemon</span> <span class="n">not</span> <span class="n">running</span><span class="p">.</span> <span class="n">starting</span> <span class="n">it</span> <span class="n">now</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">5037</span> <span class="o">*</span>
-<span class="o">*</span> <span class="n">daemon</span> <span class="n">started</span> <span class="n">successfully</span> <span class="o">*</span>
-<span class="cp"># ps | busybox grep browser</span>
-<span class="n">app_22</span>    <span class="mi">709</span>   <span class="mi">37</span>    <span class="mi">149728</span> <span class="mi">46064</span> <span class="n">ffffffff</span> <span class="mi">400113</span><span class="n">c0</span> <span class="n">S</span> <span class="n">com</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">browser</span>
-<span class="cp"># gdbserver :1337 --attach 709</span>
-<span class="n">Attached</span><span class="p">;</span> <span class="n">pid</span> <span class="o">=</span> <span class="mi">709</span>
-<span class="n">Listening</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">1337</span>
+<div class="highlight"><pre><span class="gp">$</span> adb shell
+<span class="go">* daemon not running. starting it now on port 5037 *</span>
+<span class="go">* daemon started successfully *</span>
+<span class="gp">#</span> ps | busybox grep browser
+<span class="go">app_22    709   37    149728 46064 ffffffff 400113c0 S com.android.browser</span>
+<span class="gp">#</span> gdbserver :1337 --attach 709
+<span class="go">Attached; pid = 709</span>
+<span class="go">Listening on port 1337</span>
 </pre></div>
 
 
 <p>Open port forwarding:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">adb</span> <span class="n">forward</span> <span class="n">tcp</span><span class="o">:</span><span class="mi">1337</span> <span class="n">tcp</span><span class="o">:</span><span class="mi">1337</span>
+<div class="highlight"><pre><span class="gp">$</span> adb forward tcp:1337 tcp:1337
 </pre></div>
 
 
 <p>Start gdb, set symbol and source paths, and start remote debuging:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">arm</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">androideabi</span><span class="o">-</span><span class="n">gdb</span> <span class="n">app_process</span>
-<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">set</span> <span class="n">solib</span><span class="o">-</span><span class="n">search</span><span class="o">-</span><span class="n">path</span> <span class="n">symbols</span>
-<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">directory</span> <span class="n">sources</span>
-<span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">target</span> <span class="n">remote</span> <span class="o">:</span><span class="mi">1337</span>
+<div class="highlight"><pre><span class="gp">$</span> arm-linux-androideabi-gdb app_process
+<span class="go">(gdb) set solib-search-path symbols</span>
+<span class="go">(gdb) directory sources</span>
+<span class="go">(gdb) target remote :1337</span>
 </pre></div>
 
 

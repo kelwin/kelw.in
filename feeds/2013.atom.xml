@@ -7,29 +7,29 @@
 &lt;p&gt;In most cases, we need symbols of  &lt;code&gt;app_process&lt;/code&gt;, &lt;code&gt;libc.so&lt;/code&gt;, &lt;code&gt;libdvm.so&lt;/code&gt;, &lt;code&gt;libstdc++.so&lt;/code&gt;, &lt;code&gt;libwebcore.so&lt;/code&gt; and &lt;code&gt;linker&lt;/code&gt;. &lt;code&gt;app_process&lt;/code&gt; is the process that every Android application forks from. For source code, we only need &lt;code&gt;external/webkit&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Copy the symbols to the directory &lt;code&gt;symbols&lt;/code&gt; and the source code of WebKit to the directory &lt;code&gt;source&lt;/code&gt;. Thus we get the symbols and source code done. I've already get this done in the archive above.&lt;/p&gt;
 &lt;h2&gt;Debugging WebKit&lt;/h2&gt;
-&lt;p&gt;Start your emulator or device. If you use my archive, you can create an avd of Android 4.0.4 and run &lt;code&gt;$ ./startemu.sh &amp;lt;avd name&amp;gt;&lt;/code&gt; to start the emulator.&lt;/p&gt;
+&lt;p&gt;Start your emulator or device. If you use my archive, you can create an avd of Android 4.0.4 and run &lt;code&gt;./startemu.sh &amp;lt;avd name&amp;gt;&lt;/code&gt; to start the emulator.&lt;/p&gt;
 &lt;p&gt;Open Android Browser(or any app using WebView) and start gdbserver:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;adb&lt;/span&gt; &lt;span class="n"&gt;shell&lt;/span&gt;
-&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;daemon&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;starting&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;5037&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;daemon&lt;/span&gt; &lt;span class="n"&gt;started&lt;/span&gt; &lt;span class="n"&gt;successfully&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="cp"&gt;# ps | busybox grep browser&lt;/span&gt;
-&lt;span class="n"&gt;app_22&lt;/span&gt;    &lt;span class="mi"&gt;709&lt;/span&gt;   &lt;span class="mi"&gt;37&lt;/span&gt;    &lt;span class="mi"&gt;149728&lt;/span&gt; &lt;span class="mi"&gt;46064&lt;/span&gt; &lt;span class="n"&gt;ffffffff&lt;/span&gt; &lt;span class="mi"&gt;400113&lt;/span&gt;&lt;span class="n"&gt;c0&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;android&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt;
-&lt;span class="cp"&gt;# gdbserver :1337 --attach 709&lt;/span&gt;
-&lt;span class="n"&gt;Attached&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;709&lt;/span&gt;
-&lt;span class="n"&gt;Listening&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="mi"&gt;1337&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; adb shell
+&lt;span class="go"&gt;* daemon not running. starting it now on port 5037 *&lt;/span&gt;
+&lt;span class="go"&gt;* daemon started successfully *&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; ps | busybox grep browser
+&lt;span class="go"&gt;app_22    709   37    149728 46064 ffffffff 400113c0 S com.android.browser&lt;/span&gt;
+&lt;span class="gp"&gt;#&lt;/span&gt; gdbserver :1337 --attach 709
+&lt;span class="go"&gt;Attached; pid = 709&lt;/span&gt;
+&lt;span class="go"&gt;Listening on port 1337&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Open port forwarding:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;adb&lt;/span&gt; &lt;span class="n"&gt;forward&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1337&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1337&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; adb forward tcp:1337 tcp:1337
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Start gdb, set symbol and source paths, and start remote debuging:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;arm&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;androideabi&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt; &lt;span class="n"&gt;app_process&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;solib&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="n"&gt;symbols&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="n"&gt;sources&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;gdb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1337&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; arm-linux-androideabi-gdb app_process
+&lt;span class="go"&gt;(gdb) set solib-search-path symbols&lt;/span&gt;
+&lt;span class="go"&gt;(gdb) directory sources&lt;/span&gt;
+&lt;span class="go"&gt;(gdb) target remote :1337&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
