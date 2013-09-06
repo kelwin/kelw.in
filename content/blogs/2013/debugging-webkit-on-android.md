@@ -20,10 +20,11 @@ Copy the symbols to the directory `symbols` and the source code of WebKit to the
 
 ## Debugging WebKit
 
-Start your emulator or device. If you use my archive, you can create an avd of Android 4.0.4 and run `$ ./startemu.sh <avd name>` to start the emulator.
+Start your emulator or device. If you use my archive, you can create an avd of Android 4.0.4 and run `./startemu.sh <avd name>` to start the emulator.
 
 Open Android Browser(or any app using WebView) and start gdbserver:
 
+    :::console
     $ adb shell
     * daemon not running. starting it now on port 5037 *
     * daemon started successfully *
@@ -35,10 +36,12 @@ Open Android Browser(or any app using WebView) and start gdbserver:
 
 Open port forwarding:
 
+    :::console
     $ adb forward tcp:1337 tcp:1337
 
 Start gdb, set symbol and source paths, and start remote debuging:
 
+    :::console
     $ arm-linux-androideabi-gdb app_process
     (gdb) set solib-search-path symbols
     (gdb) directory sources
