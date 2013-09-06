@@ -19,7 +19,10 @@ STATIC_PATHS = ['images', 'files']
 FILES_TO_COPY = (
     ('misc/CNAME', 'CNAME'),
 )
-THEME = "themes/notmyidea-cms"
+THEME = "themes/pelican-cait"
+# THEME = "themes/gum"
+# THEME = "themes/tuxlite_tbs"
+
 # Blogroll
 LINKS =  (('Pelican', 'http://getpelican.com/'),
           ('Python.org', 'http://python.org/'),
