@@ -15,9 +15,9 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
-STATIC_PATHS = ['images', 'files']
+STATIC_PATHS = ['images', 'files', 'extras']
 EXTRA_PATH_METADATA = {
-        'misc/CNAME': {'path': 'CNAME'},
+        'extras/CNAME': {'path': 'CNAME'},
     }
 THEME = "themes/pelican-cait"
 # THEME = "themes/gum"
