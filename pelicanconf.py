@@ -16,9 +16,9 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 STATIC_PATHS = ['images', 'files']
-FILES_TO_COPY = (
-    ('misc/CNAME', 'CNAME'),
-)
+EXTRA_PATH_METADATA = {
+        'misc/CNAME': {'path': 'CNAME'},
+    }
 THEME = "themes/pelican-cait"
 # THEME = "themes/gum"
 # THEME = "themes/tuxlite_tbs"
