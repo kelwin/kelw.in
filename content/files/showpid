@@ -5,5 +5,5 @@ if [[ "x$1" == "x" ]];then
     exit
 fi
 
-ps | grep "$1" | grep -v "grep" | grep -v "showpid"
-ps | grep "$1" | grep -v "grep" | grep -v "$0" | awk '{print $1}' | sort -gr | head -n 1
+ps axu | grep "$1" | grep -v "grep" | grep -v "showpid"
+ps axu | grep "$1" | grep -v "grep" | grep -v "$0" | awk '{print $2}' | sort -gr | head -n 1
